@@ -2,12 +2,12 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'solventum'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'default'
+profile: 'solventum'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -23,6 +23,7 @@ target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+  - "logs"
 
 
 # Configuring models
@@ -35,8 +36,29 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
+query-comment:
+  job-label: true
+
 models:
-  my_new_project:
+  solventum:
     # Applies to all files under models/example/
-    example:
+    Development:
       +materialized: table
+      +transient: true
+      +database: DBT_DEV
+
+    QA:
+      +materialized: table
+      +transient: true
+      +database: DBT_QA
+
+    prod:
+      +materialized: table
+      +transient: true
+      +database: DBT_PRD
+
+vars:
+  start_date: '2022-01-01'
+  env_dev: 'DBT_DEV'
+  env_qa: 'DBT_QA'
+  env_prd: 'DBT_PRD'
