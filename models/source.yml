@@ -3,7 +3,7 @@ version: 2
 sources:
 
   - name: SALES
-    database: DBT_DEV
+    database: DBT_{{ env_var('DBT_ENV_DB') }}
     schema: SALES
     tables:
       - name: TEST_1
