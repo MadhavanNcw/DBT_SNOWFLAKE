@@ -40,25 +40,7 @@ query-comment:
   job-label: true
 
 models:
-  solventum:
-    # Applies to all files under models/example/
-    Development:
-      +materialized: table
-      +transient: true
-      +database: DBT_DEV
-
-    QA:
-      +materialized: table
-      +transient: true
-      +database: DBT_QA
-
-    prod:
-      +materialized: table
-      +transient: true
-      +database: DBT_PRD
-
-vars:
-  start_date: '2022-01-01'
-  env_dev: 'DBT_DEV'
-  env_qa: 'DBT_QA'
-  env_prd: 'DBT_PRD'
+  +materialized: table
+  +transient: true
+  +database: DBT_{{ env_var('DBT_ENV_DB') }}
+  +schema: sales
