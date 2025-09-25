@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+
+  - name: SALES
+    database: DBT_DEV
+    schema: SALES
+    tables:
+      - name: TEST_1
