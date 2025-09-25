@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: LEARNING
+    config:
+      enabled: true
+      tags: SALES
+      schema: SALES
+      alias: LEARNING
+      full_refresh: true
+    columns:
+     - name:  SITE||'~'||OLD_RESOURCE_NAME||'~'||NEW_RESOURCE_NAME
+       tests:
+         - unique
+         - not_null

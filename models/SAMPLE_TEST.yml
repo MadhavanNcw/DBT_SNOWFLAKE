@@ -1,0 +1,11 @@
+version: 2
+
+models:
+
+####################### sample_testing TESTING #####################################
+  - name: TEST
+    columns:
+     - name:  ID
+       tests:
+         - unique
+         - not_null

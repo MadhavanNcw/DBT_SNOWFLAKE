@@ -4,7 +4,7 @@
         ,transient=false
         ,materialized='view'
         ,schema ='SALES'
-        ,alias='TEST'
+        ,alias='deletion'
 		,unique_key= 'ID'
         )
 }}
@@ -14,5 +14,4 @@ SELECT
 ID
 ,NAME
 FROM
-{{source('SALES','TEST_1')}}
-WHERE ID='3'
+{{ref('TEST')}}
